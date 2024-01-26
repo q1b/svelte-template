@@ -25,15 +25,9 @@ This is an opinionated collection of components, hooks, and utilities for your S
 - [Shadcn Svelte](https://shadcn-svelte.com/) – Primitives like modal, popover, etc. to build a stellar user experience
 - [Lucide](https://lucide.dev/) – Beautifully simple, pixel-perfect icons
 
-### Hooks and Utilities
+### Hooks and Utilities, Comming Soon
 
-- `useIntersectionObserver` –  React hook to observe when an element enters or leaves the viewport
-- `useLocalStorage` – Persist data in the browser's local storage
-- `useScroll` – React hook to observe scroll position ([example](https://github.com/steven-tey/precedent/blob/main/components/layout/navbar.tsx#L12))
-- `nFormatter` – Format numbers with suffixes like `1.2k` or `1.2M`
-- `capitalize` – Capitalize the first letter of a string
-- `truncate` – Truncate a string to a specified length
-- [`use-debounce`](https://www.npmjs.com/package/use-debounce) – Debounce a function call / state update
+- For Handling Google Token with Upstash Redis
 
 ### Code Quality
 
