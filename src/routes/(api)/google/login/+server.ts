@@ -8,7 +8,9 @@ import type { RequestEvent } from '@sveltejs/kit';
 export async function GET(event: RequestEvent): Promise<Response> {
 	const state = generateState();
 	const code = generateCodeVerifier();
-	const url = await google.createAuthorizationURL(state, code);
+	const url = await google.createAuthorizationURL(state, code, {
+		scopes: ['openid', 'email', 'profile']
+	});
 
 	// extra configrations for google
 	url.searchParams.set('access_type', 'offline');

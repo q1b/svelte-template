@@ -12,6 +12,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@epic-web/remember": "^1.0.2",
 		"@lucia-auth/adapter-sqlite": "^3.0.0-beta.13",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
