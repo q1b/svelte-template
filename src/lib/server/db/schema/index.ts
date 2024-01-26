@@ -11,6 +11,15 @@ export const userTable = sqliteTable('user', {
 	}).default('user')
 });
 
+// export type User = InferSelectModel<typeof userTable>;
+export type User = {
+	id: string;
+	name: string;
+	gmail: string;
+	image: string;
+	role: string;
+};
+
 export const usersRelations = relations(userTable, ({ many }) => ({
 	sessions: many(sessionTable)
 }));
