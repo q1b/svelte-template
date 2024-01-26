@@ -43,6 +43,7 @@
 	"dependencies": {
 		"@libsql/client": "^0.4.0",
 		"@upstash/redis": "^1.28.2",
+		"dotenv": "^16.4.1",
 		"drizzle-orm": "^0.29.3"
 	}
 }
