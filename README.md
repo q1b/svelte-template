@@ -1,0 +1,46 @@
+<p align="center">
+  Building blocks for your Sveltekit project
+</p>
+
+## Introduction
+
+This is an opinionated collection of components, hooks, and utilities for your Sveltekit project
+
+## Tech Stack + Features
+
+### Frameworks
+
+- [Sveltekit](https://kit.svelte.dev) – Svelte-Kit is full-stack framework for building Svelte apps with server-side rendering, file-based routing, and more.
+- [Lucia](https://lucia-auth.com) – Handle user authentication with ease with providers like Google, Twitter, GitHub, etc.
+- [Drizzle](https://orm.drizzle.team) – Headless Typescript ORM
+
+### Platforms
+
+- [TursoDB](https://turso.tech/) – Simple, Cost Efficient and Scalable Database
+- [Upstash](https://upstash.com) - Serverless Redis
+
+### UI
+
+- [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid UI development
+- [Shadcn Svelte](https://shadcn-svelte.com/) – Primitives like modal, popover, etc. to build a stellar user experience
+- [Lucide](https://lucide.dev/) – Beautifully simple, pixel-perfect icons
+
+### Hooks and Utilities
+
+- `useIntersectionObserver` –  React hook to observe when an element enters or leaves the viewport
+- `useLocalStorage` – Persist data in the browser's local storage
+- `useScroll` – React hook to observe scroll position ([example](https://github.com/steven-tey/precedent/blob/main/components/layout/navbar.tsx#L12))
+- `nFormatter` – Format numbers with suffixes like `1.2k` or `1.2M`
+- `capitalize` – Capitalize the first letter of a string
+- `truncate` – Truncate a string to a specified length
+- [`use-debounce`](https://www.npmjs.com/package/use-debounce) – Debounce a function call / state update
+
+### Code Quality
+
+- [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
+- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
+- [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
+
+## Inspired from
+
+- [Precedent](https://github.com/steven-tey/precedent/blob/main/README.md) Next.js Tempalte by Steven Tey ([@steventey](https://twitter.com/steventey))
