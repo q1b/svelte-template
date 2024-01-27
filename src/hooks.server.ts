@@ -9,8 +9,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.user = null;
 		event.locals.session = null;
 		// If the user is not logged in, redirect to the login page
-		if (!event.url.pathname.startsWith('/google') && !event.url.pathname.startsWith('/login'))
-			redirect(308, '/login');
+		if (!event.url.pathname.startsWith('/google')) redirect(308, '/google');
 
 		return resolve(event);
 	}

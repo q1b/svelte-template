@@ -28,12 +28,24 @@ This is an opinionated collection of components, hooks, and utilities for your S
 ### Hooks and Utilities, Comming Soon
 
 - For Handling Google Token with Upstash Redis
+- Dark Mode
 
 ### Code Quality
 
 - [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
 - [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
 - [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
+
+### File Structure
+
+#### Routes and Pages
+
+- `src/routes` – Sveltekit routes
+	- `src/(auth)` – Authentication related routes
+	- `src/(auth)/google` - Continue with Google Screen main UI
+		- `src/(auth)/google/callback` - API Endpoint for Callback
+		- `src/(auth)/google/login` - API Endpoint for Generate Auth URL
+		- `src/(auth)/google/logout` - API Endpoint for Logout
 
 ## Inspired from
 
