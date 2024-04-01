@@ -2,10 +2,9 @@
 	import { localStorage } from '$lib/utils';
 	import { onMount } from 'svelte';
 	/* BROWSER THEME STATE */
-	const storageKey = 'theme-preference';
 	let theme: 'light' | 'dark' = 'light';
 	const getColorPreference = (): 'dark' | 'light' => {
-		let colorPreference = localStorage.getItem(storageKey) as 'dark' | 'light' | null;
+		let colorPreference = localStorage.getItem('theme-preference') as 'dark' | 'light' | null;
 		if (!colorPreference)
 			colorPreference = window.matchMedia('(prefers-color-scheme: dark)').matches
 				? 'dark'
@@ -15,41 +14,52 @@
 
 	const reflectPreference = () => {
 		if (
-			localStorage.getItem(storageKey) === 'dark' ||
-			(!(storageKey in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-		)
-			document.documentElement.classList.toggle('dark');
-		else document.documentElement.classList.toggle('dark');
-		document.querySelector('#theme-toggle')?.setAttribute('aria-label', theme);
+			window.localStorage.getItem('theme-preference') === 'dark' ||
+			(!('theme-preference' in window.localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+		){
+			document.documentElement.classList.add('dark');
+			document.documentElement.style.colorScheme = 'dark';
+			document.querySelector('#theme-toggle')?.setAttribute('aria-label', 'dark');
+		} else {
+			document.documentElement.classList.remove('dark')
+			document.documentElement.style.colorScheme = 'light';
+			document.querySelector('#theme-toggle')?.setAttribute('aria-label', 'light');
+		};
 	};
 
 	export let size = 32;
 
 	onMount(() => {
+		reflectPreference();
 		theme = getColorPreference();
 		window
 			.matchMedia('(prefers-color-scheme: dark)')
 			.addEventListener('change', ({ matches: isDark }) => {
 				theme = isDark ? 'dark' : 'light';
-				localStorage.setItem(storageKey, theme);
+				localStorage.setItem('theme-preference', theme);
 				reflectPreference();
 			});
 	});
 </script>
 
+<svelte:head>
+	<!-- default to dark mode for to allow testing -->
+	<!-- this will be overwritten by FOUC prevention snippet below -->
+	{@html `<script nonce="%sveltekit.nonce%">(` + reflectPreference.toString() + `)();</script>`}
+</svelte:head>
+
 <button
 	on:click={() => {
 		theme = theme === 'dark' ? 'light' : 'dark';
+		localStorage.setItem('theme-preference', theme);
 		reflectPreference();
 	}}
-	class="tab-highlight-none theme-toggle relative"
+	class="[-webkit-tap-highlight-color:transparent;] theme-toggle relative"
 	id="theme-toggle"
 	title="Toggles light & dark"
 	aria-label="auto"
 	aria-live="polite"
 	style:--size="{size ? size : 32}px"
-	style:--icon-fill={theme === 'dark' ? '#3dcfcf' : '#ff9200'}
-	style:--icon-fill-hover={theme === 'dark' ? '#53dbdb' : '#ff9200'}
 >
 	<svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
 		<mask class="moon" id="moon-mask">
@@ -72,6 +82,8 @@
 
 <style>
 	.theme-toggle {
+		--icon-fill: #ff9200;
+		--icon-fill-hover: #ff9200;
 		background: none;
 		border: none;
 		padding: 0;
@@ -83,6 +95,10 @@
 		touch-action: manipulation;
 		-webkit-tap-highlight-color: transparent;
 		outline-offset: 5px;
+	}
+	:global(.dark) .theme-toggle {
+		--icon-fill:#3dcfcf;
+		--icon-fill-hover: #53dbdb;
 	}
 	.theme-toggle > svg {
 		inline-size: 100%;
