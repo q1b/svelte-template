@@ -1,6 +1,5 @@
 import { lucia } from '$lib/server/auth';
 import { type Handle } from '@sveltejs/kit';
-import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const sessionId = event.cookies.get(lucia.sessionCookieName);
@@ -8,9 +7,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (!sessionId) {
 		event.locals.user = null;
 		event.locals.session = null;
-		// If the user is not logged in, redirect to the login page
-		if (!event.url.pathname.startsWith('/google')) redirect(308, '/google');
-
 		return resolve(event);
 	}
 

@@ -1,9 +1,13 @@
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (async (event) => {
-	console.log(event.locals);
+	// If the user is not logged in, redirect to the login page
+	if(event.locals.user === null || event.locals.session === null) {
+		redirect(308, '/google');
+	}
 	return {
-		isLogged: !!event.locals.session,
+		isLogged: true,
 		user: event.locals.user
 	};
 }) satisfies PageServerLoad;
